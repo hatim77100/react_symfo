@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LoginController!{% endblock %}
+
+{% block body %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <a href="https://localhost:8000">Déjà connecté !</a>
+    {% else %}
+    <div class="uppercase text-center py-4 bg-gradient-to-r from-orange-400 to-slate-400">
+        <h1 class=" text-2xl">Espace de connexion</h1>
+        <a href="http://localhost:8000/" class="pt-2 uppercase text-sm transition hover:text-white hover:ease-in-out hover:duration-150">Accueil</a>
+        |
+        <a href="http://localhost:8000/register" class="pt-2 uppercase text-sm transition hover:text-white hover:ease-in-out hover:duration-150">Inscription</a>
+    </div>
+    <div class="min-h-screen min-w-screen overflow-hidden flex items-center justify-center flex-col bg-black">
+        <div class="text-center pb-20 text-orange-400">
+            <p class=""  onclick="salo()">Vous possédez un compte ?</p>
+            <p class="">Connectez vous ci-dessous 👇🏻</p>
+        </div>
+        <form action="{{ path('app_login') }}" method="post" class="flex flex-col w-2/5">
+
+            <label for="username" class="font-bold text-center uppercase pb-2 text-orange-400">Votre adresse e-mail :</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" class="border-2 border-orange-400 focus:outline-none focus:border-slate-400 focus:transition focus:ease-in-out focus:duration-1000">
+
+            <label for="password" class="font-bold text-center uppercase mt-10 pb-2 text-orange-400">Votre mot de passe :</label>
+            <input type="password" id="password" name="_password" class="border-2 border-orange-400 focus:outline-none focus:border-slate-400 focus:transition focus:ease-in-out focus:duration-1000">
+
+            {# If you want to control the URL the user is redirected to on success #}
+            <input type="hidden" name="_target_path" value="/dashboard">
+            <div class="flex justify-center">
+                <button type="submit" class="mt-10 p-2 uppercase font-bold text-orange-400 border-2 border-orange-400 w-1/2 transition hover:bg-orange-400 hover:text-slate-400 hover:ease-in-out hover:duration-150 hover:border-slate-400">Connexion</button>
+            </div>
+        </form>
+    </div>    
+    {% endif %}
+
+{% endblock %}

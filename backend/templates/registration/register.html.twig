@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="uppercase text-center py-4 bg-gradient-to-l from-orange-400 to-slate-400">
+        <h1 class=" text-2xl">Espace d'inscription</h1>
+        <a href="http://localhost:8000/" class="pt-2 uppercase text-sm transition hover:text-white hover:ease-in-out hover:duration-150">Accueil</a>
+        |
+        <a href="http://localhost:8000/login" class="pt-2 uppercase text-sm transition hover:text-white hover:ease-in-out hover:duration-150">Connexion</a>
+    </div>
+    <div class="min-h-screen min-w-screen overflow-hidden flex items-center justify-center flex-col bg-black text-white">
+    <div class="text-center pb-10">
+        <p class="text-slate-400">Vous souhaitez nous rejoindre ?</p>
+        <p class="text-slate-400">Remplissez le formulaire ci-dessous 👇🏻</p>
+    </div>
+    {{ form_start(registrationForm) }}
+    <div class="flex flex-col w-[520px]">
+        <label for="registration_form_alias" class="required font-bold text-center uppercase mt-10 pb-2 text-slate-400">Votre pseudonyme :</label>
+        {{ form_widget(registrationForm.alias, { 'attr': {'label': 'Password', 'class': 'border-2 border-slate-400 focus:border-orange-400 focus:outline-none focus:transition focus:ease-in-out focus:duration-1000', 'placeholder': '' | trans } }) }} 
+    </div>
+    <div class="flex flex-col my-4">
+        <label for="registration_form_email" class="required font-bold text-center uppercase pb-2 text-slate-400">Votre e-mail :</label>
+        {{ form_widget(registrationForm.email, { 'attr': {'class': 'border-2 border-slate-400 focus:border-orange-400 focus:outline-none focus:transition focus:ease-in-out focus:duration-1000', 'placeholder': ''|trans } }) }} 
+    </div>
+    <div class="flex flex-col">
+        <label for="registration_form_plainPassword" class="required font-bold text-center uppercase pb-2 text-slate-400">Votre mot de passe :</label>
+        {{ form_widget(registrationForm.plainPassword, { 'attr': {'label': 'Password', 'class': 'border-2 border-slate-400 focus:border-orange-400 focus:outline-none focus:transition focus:ease-in-out focus:duration-1000', 'placeholder': '' | trans } }) }} 
+    </div>
+    <div class="flex flex-col items-center py-8">
+        <label for="registration_form_image_file" class="required font-bold text-center uppercase pb-2 text-slate-400">Photo de profil (facultatif) :</label>
+        {{form_widget(registrationForm.image_file)}}
+    </div>
+    <div class="w-full flex flex-row-reverse justify-end">
+        <label for="registration_form_agreeTerms" class="required pl-2 text-slate-400">Confirmer mon inscription</label>
+        {{ form_widget(registrationForm.agreeTerms, { 'attr': {'class': 'accent-orange-400 focus:outline-none focus:border-2 focus:border-orange-400 focus:transition focus:ease-in-out focus:duration-1000'} }) }} 
+    </div>
+    <div class="flex justify-center">
+        <button type="submit" class="w-[256px] mt-10 p-2 uppercase font-bold text-slate-400 border-2 border-slate-400 transition hover:bg-slate-400 hover:text-orange-400 hover:ease-in-out hover:duration-150 hover:border-orange-400">M'inscrire</button>
+    </div>
+    {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}
